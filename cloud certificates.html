@@ -1,0 +1,4924 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>CloudCert Pro - Advanced Cloud Certification Platform</title>
+
+<style>
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+    background:#f1f5f9;
+    color:#172033;
+
+    transition:.3s;
+}
+
+button{
+    border:0;
+    cursor:pointer;
+}
+
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+a{
+    text-decoration:none;
+}
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+#loginPage{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:
+    radial-gradient(
+        circle at top left,
+        #2563eb,
+        transparent 40%
+    ),
+    linear-gradient(
+        135deg,
+        #020617,
+        #172554,
+        #312e81
+    );
+
+}
+
+.login-card{
+
+    width:430px;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    background:
+    rgba(255,255,255,.96);
+
+    box-shadow:
+    0 30px 80px
+    rgba(0,0,0,.45);
+
+}
+
+.login-logo{
+
+    text-align:center;
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:#2563eb;
+
+    margin-bottom:8px;
+
+}
+
+.login-subtitle{
+
+    text-align:center;
+
+    color:#64748b;
+
+    margin-bottom:30px;
+
+}
+
+.login-card label{
+
+    display:block;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    margin-top:15px;
+
+}
+
+.login-card input{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:7px;
+
+    border:
+    1px solid #cbd5e1;
+
+    border-radius:9px;
+
+    outline:none;
+
+}
+
+.login-card input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 3px
+    rgba(37,99,235,.1);
+
+}
+
+.login-button{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:20px;
+
+    border-radius:9px;
+
+    background:#2563eb;
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+}
+
+.login-button:hover{
+
+    background:#1d4ed8;
+
+}
+
+.demo-login{
+
+    margin-top:20px;
+
+    padding:15px;
+
+    background:#eff6ff;
+
+    border-radius:10px;
+
+    text-align:center;
+
+    color:#1e40af;
+
+    font-size:13px;
+
+}
+
+/* =====================================================
+   APPLICATION
+===================================================== */
+
+#app{
+
+    display:none;
+
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:260px;
+
+    height:100vh;
+
+    background:#020617;
+
+    color:white;
+
+    padding:20px 14px;
+
+    z-index:100;
+
+    overflow-y:auto;
+
+}
+
+.logo{
+
+    font-size:22px;
+
+    font-weight:800;
+
+    padding:15px;
+
+    margin-bottom:20px;
+
+}
+
+.logo span{
+
+    color:#38bdf8;
+
+}
+
+.menu-heading{
+
+    font-size:10px;
+
+    color:#64748b;
+
+    text-transform:uppercase;
+
+    padding:15px;
+
+    letter-spacing:1px;
+
+}
+
+.menu{
+
+    display:block;
+
+    padding:12px 15px;
+
+    margin:4px 0;
+
+    color:#cbd5e1;
+
+    border-radius:8px;
+
+    transition:.2s;
+
+}
+
+.menu:hover,
+.menu.active{
+
+    color:white;
+
+    background:#1d4ed8;
+
+}
+
+.menu .count{
+
+    float:right;
+
+    background:#334155;
+
+    border-radius:20px;
+
+    padding:2px 7px;
+
+    font-size:11px;
+
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+
+    margin-left:260px;
+
+    min-height:100vh;
+
+}
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar{
+
+    height:75px;
+
+    background:white;
+
+    border-bottom:
+    1px solid #e2e8f0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 30px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:50;
+
+}
+
+.search{
+
+    width:380px;
+
+}
+
+.search input{
+
+    width:100%;
+
+    padding:12px 16px;
+
+    border:
+    1px solid #cbd5e1;
+
+    border-radius:9px;
+
+}
+
+.top-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.icon-button{
+
+    width:38px;
+    height:38px;
+
+    border-radius:8px;
+
+    background:#f1f5f9;
+
+}
+
+.user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.avatar{
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    background:#2563eb;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:bold;
+
+}
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content{
+
+    padding:30px;
+
+}
+
+.page-title{
+
+    margin-bottom:25px;
+
+}
+
+.page-title h1{
+
+    font-size:30px;
+
+}
+
+.page-title p{
+
+    color:#64748b;
+
+    margin-top:6px;
+
+}
+
+/* =====================================================
+   CLOUD STATUS
+===================================================== */
+
+.cloud-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+}
+
+.cloud-card{
+
+    background:white;
+
+    padding:18px;
+
+    border-radius:13px;
+
+    box-shadow:
+    0 3px 12px
+    rgba(0,0,0,.06);
+
+}
+
+.cloud-card .provider{
+
+    font-weight:bold;
+
+}
+
+.online{
+
+    color:#16a34a;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    float:right;
+
+}
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:18px;
+
+}
+
+.stat{
+
+    background:white;
+
+    padding:22px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 4px 12px
+    rgba(0,0,0,.06);
+
+}
+
+.stat-icon{
+
+    font-size:27px;
+
+}
+
+.stat-title{
+
+    color:#64748b;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    margin:10px 0;
+
+}
+
+.stat-value{
+
+    font-size:28px;
+
+    font-weight:800;
+
+}
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.section{
+
+    margin-top:35px;
+
+}
+
+.section-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.section-header h2{
+
+    font-size:22px;
+
+}
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.primary{
+
+    background:#2563eb;
+
+    color:white;
+
+    padding:10px 17px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+}
+
+.secondary{
+
+    background:#e2e8f0;
+
+    color:#172033;
+
+    padding:10px 17px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+}
+
+.success{
+
+    background:#16a34a;
+
+    color:white;
+
+    padding:10px 17px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+}
+
+/* =====================================================
+   COURSES
+===================================================== */
+
+.course-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:20px;
+
+}
+
+.course{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:
+    0 5px 15px
+    rgba(0,0,0,.07);
+
+    border-top:5px solid;
+
+}
+
+.course.aws{
+
+    border-color:#ff9900;
+
+}
+
+.course.azure{
+
+    border-color:#0078d4;
+
+}
+
+.course.gcp{
+
+    border-color:#4285f4;
+
+}
+
+.provider-icon{
+
+    font-size:35px;
+
+}
+
+.course h3{
+
+    margin:10px 0;
+
+}
+
+.course p{
+
+    color:#64748b;
+
+    line-height:1.6;
+
+}
+
+.course-meta{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:15px;
+
+    font-size:12px;
+
+    color:#64748b;
+
+}
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress{
+
+    height:9px;
+
+    background:#e2e8f0;
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    margin:14px 0;
+
+}
+
+.progress-bar{
+
+    height:100%;
+
+    background:#2563eb;
+
+}
+
+/* =====================================================
+   TWO COLUMN
+===================================================== */
+
+.two-column{
+
+    display:grid;
+
+    grid-template-columns:
+    2fr 1fr;
+
+    gap:20px;
+
+}
+
+.panel{
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    box-shadow:
+    0 4px 12px
+    rgba(0,0,0,.06);
+
+}
+
+/* =====================================================
+   LEARNING PATH
+===================================================== */
+
+.timeline{
+
+    position:relative;
+
+    padding-left:30px;
+
+}
+
+.timeline:before{
+
+    content:"";
+
+    position:absolute;
+
+    left:8px;
+
+    top:0;
+
+    bottom:0;
+
+    width:2px;
+
+    background:#cbd5e1;
+
+}
+
+.timeline-item{
+
+    position:relative;
+
+    padding-bottom:25px;
+
+}
+
+.timeline-item:before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-27px;
+
+    top:3px;
+
+    width:12px;
+
+    height:12px;
+
+    background:#2563eb;
+
+    border-radius:50%;
+
+}
+
+.timeline-item h4{
+
+    margin-bottom:5px;
+
+}
+
+.timeline-item p{
+
+    color:#64748b;
+
+    font-size:13px;
+
+}
+
+/* =====================================================
+   ANALYTICS
+===================================================== */
+
+.chart{
+
+    height:270px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    gap:9px;
+
+    border-bottom:
+    2px solid #cbd5e1;
+
+    padding:20px 5px 0;
+
+}
+
+.bar{
+
+    flex:1;
+
+    background:#2563eb;
+
+    border-radius:
+    5px 5px 0 0;
+
+    transition:.3s;
+
+}
+
+.bar:hover{
+
+    background:#38bdf8;
+
+}
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+th,
+td{
+
+    padding:13px;
+
+    border-bottom:
+    1px solid #e2e8f0;
+
+    text-align:left;
+
+}
+
+th{
+
+    background:#f8fafc;
+
+    color:#64748b;
+
+    font-size:12px;
+
+}
+
+.badge{
+
+    display:inline-block;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:bold;
+
+}
+
+.green{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+}
+
+.red{
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
+}
+
+.blue{
+
+    background:#dbeafe;
+
+    color:#1d4ed8;
+
+}
+
+.orange{
+
+    background:#ffedd5;
+
+    color:#c2410c;
+
+}
+
+/* =====================================================
+   LAB CARDS
+===================================================== */
+
+.lab-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+.lab{
+
+    padding:20px;
+
+    background:#f8fafc;
+
+    border-radius:12px;
+
+    border:
+    1px solid #e2e8f0;
+
+}
+
+.lab h3{
+
+    margin-bottom:8px;
+
+}
+
+.lab p{
+
+    color:#64748b;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+}
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.quiz{
+
+    background:
+    linear-gradient(
+        135deg,
+        #1d4ed8,
+        #312e81
+    );
+
+    color:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+}
+
+.quiz button{
+
+    margin-top:15px;
+
+    background:white;
+
+    color:#1d4ed8;
+
+    padding:11px 20px;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+}
+
+/* =====================================================
+   ALERTS
+===================================================== */
+
+.alert{
+
+    padding:15px;
+
+    margin-bottom:10px;
+
+    border-radius:10px;
+
+    border-left:5px solid;
+
+}
+
+.alert.warning{
+
+    background:#fff7ed;
+
+    border-color:#f97316;
+
+}
+
+.alert.info{
+
+    background:#eff6ff;
+
+    border-color:#2563eb;
+
+}
+
+.alert.success-alert{
+
+    background:#f0fdf4;
+
+    border-color:#16a34a;
+
+}
+
+/* =====================================================
+   CERTIFICATE
+===================================================== */
+
+.certificate{
+
+    background:white;
+
+    border:
+    5px double #2563eb;
+
+    padding:45px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+}
+
+.certificate h1{
+
+    color:#1d4ed8;
+
+    margin:20px 0;
+
+}
+
+.certificate .seal{
+
+    font-size:60px;
+
+}
+
+/* =====================================================
+   LEADERBOARD
+===================================================== */
+
+.rank{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:14px;
+
+    border-bottom:
+    1px solid #e2e8f0;
+
+}
+
+.rank-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.rank-number{
+
+    width:30px;
+    height:30px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#e2e8f0;
+
+    font-weight:bold;
+
+}
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+.admin-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+.admin-card{
+
+    background:white;
+
+    padding:22px;
+
+    border-radius:13px;
+
+    border:
+    1px solid #e2e8f0;
+
+}
+
+.admin-card h3{
+
+    margin-bottom:10px;
+
+}
+
+/* =====================================================
+   API
+===================================================== */
+
+.api-box{
+
+    background:#0f172a;
+
+    color:#e2e8f0;
+
+    padding:20px;
+
+    border-radius:10px;
+
+    font-family:
+    Consolas,
+    monospace;
+
+    overflow:auto;
+
+}
+
+.api-line{
+
+    margin:5px 0;
+
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+    rgba(0,0,0,.65);
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:500;
+
+}
+
+.modal-content{
+
+    width:600px;
+
+    max-width:90%;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+}
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+
+}
+
+.close{
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
+    padding:7px 11px;
+
+    border-radius:6px;
+
+}
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+body.dark{
+
+    background:#020617;
+
+    color:#e5e7eb;
+
+}
+
+body.dark .topbar,
+body.dark .stat,
+body.dark .cloud-card,
+body.dark .course,
+body.dark .panel,
+body.dark .lab,
+body.dark .certificate,
+body.dark .admin-card{
+
+    background:#111827;
+
+    color:#e5e7eb;
+
+}
+
+body.dark .course p,
+body.dark .page-title p,
+body.dark .stat-title,
+body.dark .lab p{
+
+    color:#94a3b8;
+
+}
+
+body.dark th{
+
+    background:#1e293b;
+
+}
+
+body.dark td,
+body.dark th{
+
+    border-color:#334155;
+
+}
+
+body.dark .secondary{
+
+    background:#334155;
+
+    color:white;
+
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    background:#020617;
+
+    color:white;
+
+    text-align:center;
+
+    padding:25px;
+
+    margin-top:40px;
+
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1100px){
+
+    .stats{
+
+        grid-template-columns:
+        repeat(3,1fr);
+
+    }
+
+    .course-grid,
+    .lab-grid,
+    .admin-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+
+        width:70px;
+
+    }
+
+    .logo{
+
+        font-size:0;
+
+        text-align:center;
+
+    }
+
+    .menu{
+
+        font-size:0;
+
+        text-align:center;
+
+    }
+
+    .menu .count{
+
+        display:none;
+
+    }
+
+    .main{
+
+        margin-left:70px;
+
+    }
+
+    .cloud-grid,
+    .stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .two-column{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .search{
+
+        width:220px;
+
+    }
+
+}
+
+@media(max-width:550px){
+
+    .content{
+
+        padding:15px;
+
+    }
+
+    .topbar{
+
+        padding:0 12px;
+
+    }
+
+    .search{
+
+        width:150px;
+
+    }
+
+    .user strong{
+
+        display:none;
+
+    }
+
+    .cloud-grid,
+    .stats,
+    .course-grid,
+    .lab-grid,
+    .admin-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/* =====================================================
+   PRINT CERTIFICATE
+===================================================== */
+
+@media print{
+
+    body *{
+
+        visibility:hidden;
+
+    }
+
+    #certificateArea,
+    #certificateArea *{
+
+        visibility:visible;
+
+    }
+
+    #certificateArea{
+
+        position:absolute;
+
+        left:0;
+
+        top:0;
+
+        width:100%;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<div id="loginPage">
+
+<div class="login-card">
+
+<div class="login-logo">
+
+☁️ CloudCert Pro
+
+</div>
+
+<div class="login-subtitle">
+
+Advanced Cloud Certification Platform
+
+</div>
+
+
+<label>
+
+Username
+
+</label>
+
+<input
+id="username"
+placeholder="Enter username">
+
+
+<label>
+
+Password
+
+</label>
+
+<input
+id="password"
+type="password"
+placeholder="Enter password">
+
+
+<button
+class="login-button"
+onclick="login()">
+
+LOGIN
+
+</button>
+
+
+<div class="demo-login">
+
+<strong>Demo Login</strong>
+
+<br><br>
+
+Username: <b>admin</b>
+
+<br>
+
+Password: <b>admin123</b>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<div id="app">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+☁️ <span>CloudCert</span>
+
+</div>
+
+
+<div class="menu-heading">
+
+Main
+
+</div>
+
+
+<a
+class="menu active"
+href="#dashboard">
+
+📊 Dashboard
+
+</a>
+
+
+<a
+class="menu"
+href="#courses">
+
+📚 Courses
+
+<span class="count">12</span>
+
+</a>
+
+
+<a
+class="menu"
+href="#learning">
+
+🛣️ Learning Paths
+
+</a>
+
+
+<a
+class="menu"
+href="#labs">
+
+🧪 Hands-on Labs
+
+</a>
+
+
+<a
+class="menu"
+href="#quiz">
+
+📝 Quizzes
+
+</a>
+
+
+<a
+class="menu"
+href="#exams">
+
+🎯 Mock Exams
+
+</a>
+
+
+<div class="menu-heading">
+
+Credentials
+
+</div>
+
+
+<a
+class="menu"
+href="#certificates">
+
+🏆 Certificates
+
+</a>
+
+
+<a
+class="menu"
+href="#badges">
+
+🎖️ Digital Badges
+
+</a>
+
+
+<a
+class="menu"
+href="#leaderboard">
+
+🏅 Leaderboard
+
+</a>
+
+
+<div class="menu-heading">
+
+Cloud
+
+</div>
+
+
+<a
+class="menu"
+href="#resources">
+
+☁️ AWS / Azure / GCP
+
+</a>
+
+
+<a
+class="menu"
+href="#monitoring">
+
+📡 Monitoring
+
+</a>
+
+
+<a
+class="menu"
+href="#api">
+
+🔌 REST API
+
+</a>
+
+
+<div class="menu-heading">
+
+Administration
+
+</div>
+
+
+<a
+class="menu"
+href="#admin">
+
+⚙️ Admin Dashboard
+
+</a>
+
+
+<a
+class="menu"
+href="#logs">
+
+📋 System Logs
+
+</a>
+
+
+<a
+class="menu"
+href="#deployment">
+
+🚀 Deployment
+
+</a>
+
+
+<a
+class="menu"
+href="#"
+onclick="logout()">
+
+🚪 Logout
+
+</a>
+
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div class="main">
+
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+
+<div class="search">
+
+<input
+id="globalSearch"
+placeholder="🔍 Search courses, labs, certificates..."
+onkeyup="globalSearch()">
+
+</div>
+
+
+<div class="top-actions">
+
+
+<button
+class="icon-button"
+onclick="toggleDarkMode()">
+
+🌙
+
+</button>
+
+
+<button
+class="icon-button"
+onclick="showNotifications()">
+
+🔔
+
+</button>
+
+
+<div class="user">
+
+<strong id="topUser">
+Administrator
+</strong>
+
+<div class="avatar">
+
+A
+
+</div>
+
+</div>
+
+
+</div>
+
+</header>
+
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
+<main class="content">
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard">
+
+
+<div class="page-title">
+
+<h1>
+Cloud Certification Dashboard
+</h1>
+
+<p>
+Manage your multi-cloud learning,
+skills, examinations and credentials.
+</p>
+
+</div>
+
+
+<!-- CLOUD STATUS -->
+
+<div class="cloud-grid">
+
+
+<div class="cloud-card">
+
+<div class="provider">
+
+🟠 AWS
+
+<span class="online">
+
+● ONLINE
+
+</span>
+
+</div>
+
+<br>
+
+EC2 · S3 · IAM · VPC
+
+</div>
+
+
+<div class="cloud-card">
+
+<div class="provider">
+
+🔵 Microsoft Azure
+
+<span class="online">
+
+● ONLINE
+
+</span>
+
+</div>
+
+<br>
+
+VM · Storage · Entra ID
+
+</div>
+
+
+<div class="cloud-card">
+
+<div class="provider">
+
+🔵 Google Cloud
+
+<span class="online">
+
+● ONLINE
+
+</span>
+
+</div>
+
+<br>
+
+Compute · GKE · BigQuery
+
+</div>
+
+
+<div class="cloud-card">
+
+<div class="provider">
+
+🔐 Security
+
+<span class="online">
+
+● ACTIVE
+
+</span>
+
+</div>
+
+<br>
+
+IAM · MFA · Encryption
+
+</div>
+
+
+</div>
+
+
+<!-- STATISTICS -->
+
+<div class="stats">
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+📚
+
+</div>
+
+<div class="stat-title">
+
+COURSES
+
+</div>
+
+<div class="stat-value">
+
+12
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+🧪
+
+</div>
+
+<div class="stat-title">
+
+LABS COMPLETED
+
+</div>
+
+<div
+class="stat-value"
+id="labCount">
+
+24
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+🎯
+
+</div>
+
+<div class="stat-title">
+
+EXAMS
+
+</div>
+
+<div
+class="stat-value"
+id="examCount">
+
+8
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+📈
+
+</div>
+
+<div class="stat-title">
+
+AVERAGE SCORE
+
+</div>
+
+<div
+class="stat-value"
+id="averageScore">
+
+82%
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+🏆
+
+</div>
+
+<div class="stat-title">
+
+CERTIFICATES
+
+</div>
+
+<div class="stat-value">
+
+3
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     COURSES
+===================================================== -->
+
+<section
+class="section"
+id="courses">
+
+
+<div class="section-header">
+
+<h2>
+
+☁️ Certification Tracks
+
+</h2>
+
+<button
+class="primary"
+onclick="openModal('courseModal')">
+
++ Add Course
+
+</button>
+
+</div>
+
+
+<div
+class="course-grid"
+id="courseList">
+
+
+<div
+class="course aws searchable">
+
+
+<div class="provider-icon">
+
+🟠
+
+</div>
+
+<h3>
+
+AWS Cloud Practitioner
+
+</h3>
+
+<p>
+
+Foundational cloud concepts,
+AWS services, security,
+architecture, pricing and support.
+
+</p>
+
+
+<div class="progress">
+
+<div
+class="progress-bar"
+style="width:78%">
+
+</div>
+
+</div>
+
+
+<div class="course-meta">
+
+<span>
+
+78% Complete
+
+</span>
+
+<span>
+
+24 Modules
+
+</span>
+
+</div>
+
+
+<br>
+
+
+<button
+class="primary"
+onclick="startCourse('AWS Cloud Practitioner')">
+
+Continue
+
+</button>
+
+
+</div>
+
+
+<div
+class="course azure searchable">
+
+
+<div class="provider-icon">
+
+🔵
+
+</div>
+
+<h3>
+
+Azure Fundamentals AZ-900
+
+</h3>
+
+<p>
+
+Azure architecture,
+core services, identity,
+security, governance and pricing.
+
+</p>
+
+
+<div class="progress">
+
+<div
+class="progress-bar"
+style="width:64%">
+
+</div>
+
+</div>
+
+
+<div class="course-meta">
+
+<span>
+
+64% Complete
+
+</span>
+
+<span>
+
+20 Modules
+
+</span>
+
+</div>
+
+
+<br>
+
+
+<button
+class="primary"
+onclick="startCourse('Azure Fundamentals')">
+
+Continue
+
+</button>
+
+
+</div>
+
+
+<div
+class="course gcp searchable">
+
+
+<div class="provider-icon">
+
+🔵
+
+</div>
+
+<h3>
+
+Google Cloud Associate Engineer
+
+</h3>
+
+<p>
+
+Deploy, secure and maintain
+applications and infrastructure
+on Google Cloud.
+
+</p>
+
+
+<div class="progress">
+
+<div
+class="progress-bar"
+style="width:52%">
+
+</div>
+
+</div>
+
+
+<div class="course-meta">
+
+<span>
+
+52% Complete
+
+</span>
+
+<span>
+
+28 Modules
+
+</span>
+
+</div>
+
+
+<br>
+
+
+<button
+class="primary"
+onclick="startCourse('Google Cloud Associate Engineer')">
+
+Continue
+
+</button>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LEARNING PATH
+===================================================== -->
+
+<section
+class="section"
+id="learning">
+
+
+<div class="two-column">
+
+
+<div class="panel">
+
+<h2>
+🛣️ Advanced Cloud Learning Path
+</h2>
+
+<br>
+
+
+<div class="timeline">
+
+
+<div class="timeline-item">
+
+<h4>
+1. Cloud Fundamentals
+</h4>
+
+<p>
+Completed · 100%
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<h4>
+2. Cloud Networking
+</h4>
+
+<p>
+Completed · 100%
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<h4>
+3. Cloud Security
+</h4>
+
+<p>
+Completed · 90%
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<h4>
+4. Containers & Kubernetes
+</h4>
+
+<p>
+In progress · 70%
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<h4>
+5. Serverless Computing
+</h4>
+
+<p>
+In progress · 45%
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<h4>
+6. DevOps & CI/CD
+</h4>
+
+<p>
+Not started
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<h4>
+7. Multi-Cloud Architecture
+</h4>
+
+<p>
+Not started
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>
+🤖 AI Skill Analysis
+</h2>
+
+<br>
+
+<div class="alert warning">
+
+<strong>
+Weak Topic Detected
+</strong>
+
+Cloud networking requires more practice.
+
+</div>
+
+
+<div class="alert info">
+
+<strong>
+Recommended
+
+</strong>
+
+Complete VPC/VNet laboratory.
+
+</div>
+
+
+<div class="alert success-alert">
+
+<strong>
+Strength
+
+</strong>
+
+Excellent performance in IAM.
+
+</div>
+
+
+<button
+class="primary"
+onclick="runAIAnalysis()">
+
+Run AI Analysis
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LABS
+===================================================== -->
+
+<section
+class="section"
+id="labs">
+
+
+<div class="section-header">
+
+<h2>
+🧪 Hands-on Cloud Labs
+</h2>
+
+<button
+class="primary"
+onclick="startLab()">
+
+Start Random Lab
+
+</button>
+
+</div>
+
+
+<div class="lab-grid">
+
+
+<div class="lab searchable">
+
+<h3>
+AWS EC2 Deployment
+</h3>
+
+<p>
+Launch a virtual machine,
+configure security groups
+and deploy a web server.
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="startLab()">
+
+Start Lab
+
+</button>
+
+</div>
+
+
+<div class="lab searchable">
+
+<h3>
+Azure Virtual Network
+
+</h3>
+
+<p>
+Create a VNet, subnet,
+network security group
+and virtual machine.
+
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="startLab()">
+
+Start Lab
+
+</button>
+
+</div>
+
+
+<div class="lab searchable">
+
+<h3>
+Google Cloud Storage
+
+</h3>
+
+<p>
+Create a storage bucket,
+configure IAM permissions
+and upload objects.
+
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="startLab()">
+
+Start Lab
+
+</button>
+
+</div>
+
+
+<div class="lab searchable">
+
+<h3>
+Docker Container
+
+</h3>
+
+<p>
+Build a Docker image,
+run a container and
+publish a cloud application.
+
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="startLab()">
+
+Start Lab
+
+</button>
+
+</div>
+
+
+<div class="lab searchable">
+
+<h3>
+Kubernetes Deployment
+
+</h3>
+
+<p>
+Deploy a containerized
+application using Kubernetes
+and expose a service.
+
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="startLab()">
+
+Start Lab
+
+</button>
+
+</div>
+
+
+<div class="lab searchable">
+
+<h3>
+Serverless Function
+
+</h3>
+
+<p>
+Create an event-driven
+serverless function and
+connect it to storage.
+
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="startLab()">
+
+Start Lab
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     QUIZ
+===================================================== -->
+
+<section
+class="section"
+id="quiz">
+
+
+<div class="quiz">
+
+
+<h2>
+📝 Practice Quiz
+</h2>
+
+
+<p style="margin-top:10px">
+
+Topic:
+Cloud Computing Fundamentals
+
+</p>
+
+
+<p>
+
+Questions: 10 |
+Instant feedback |
+Automatic scoring
+
+</p>
+
+
+<button
+onclick="startQuiz()">
+
+Start Quiz
+
+</button>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     MOCK EXAMS
+===================================================== -->
+
+<section
+class="section"
+id="exams">
+
+
+<div class="panel">
+
+
+<div class="section-header">
+
+<h2>
+🎯 Certification Mock Exams
+</h2>
+
+<button
+class="primary"
+onclick="startExam()">
+
+Start Exam
+
+</button>
+
+</div>
+
+
+<div class="table-wrapper">
+
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Exam</th>
+
+<th>Provider</th>
+
+<th>Questions</th>
+
+<th>Duration</th>
+
+<th>Pass Mark</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+Cloud Practitioner
+</td>
+
+<td>AWS</td>
+
+<td>65</td>
+
+<td>90 min</td>
+
+<td>70%</td>
+
+<td>
+
+<span class="badge green">
+Ready
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+AZ-900
+</td>
+
+<td>Azure</td>
+
+<td>50</td>
+
+<td>60 min</td>
+
+<td>70%</td>
+
+<td>
+
+<span class="badge green">
+Ready
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+Associate Cloud Engineer
+</td>
+
+<td>GCP</td>
+
+<td>50</td>
+
+<td>120 min</td>
+
+<td>70%</td>
+
+<td>
+
+<span class="badge blue">
+Ready
+</span>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ANALYTICS
+===================================================== -->
+
+<section
+class="section"
+id="monitoring">
+
+
+<div class="two-column">
+
+
+<div class="panel">
+
+<h2>
+📈 Performance Analytics
+</h2>
+
+
+<div
+class="chart"
+id="chart">
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>
+🚨 Alerts
+
+</h2>
+
+<br>
+
+
+<div class="alert warning">
+
+Exam preparation deadline
+approaching.
+
+</div>
+
+
+<div class="alert info">
+
+New Kubernetes laboratory
+available.
+
+</div>
+
+
+<div class="alert success-alert">
+
+AWS progress increased
+to 78%.
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     CLOUD RESOURCES
+===================================================== -->
+
+<section
+class="section"
+id="resources">
+
+
+<div class="panel">
+
+
+<div class="section-header">
+
+<h2>
+☁️ Multi-Cloud Resources
+</h2>
+
+<button
+class="primary"
+onclick="refreshCloud()">
+
+Refresh
+
+</button>
+
+</div>
+
+
+<div class="table-wrapper">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>Resource</th>
+
+<th>Provider</th>
+
+<th>Region</th>
+
+<th>CPU</th>
+
+<th>Storage</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>EC2 Web Server</td>
+
+<td>AWS</td>
+
+<td>Asia Pacific</td>
+
+<td>42%</td>
+
+<td>64 GB</td>
+
+<td>
+
+<span class="badge green">
+Running
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Virtual Machine</td>
+
+<td>Azure</td>
+
+<td>South India</td>
+
+<td>58%</td>
+
+<td>128 GB</td>
+
+<td>
+
+<span class="badge green">
+Running
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Compute Engine</td>
+
+<td>GCP</td>
+
+<td>Asia South</td>
+
+<td>35%</td>
+
+<td>100 GB</td>
+
+<td>
+
+<span class="badge green">
+Running
+</span>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>PostgreSQL Database</td>
+
+<td>AWS</td>
+
+<td>Singapore</td>
+
+<td>27%</td>
+
+<td>250 GB</td>
+
+<td>
+
+<span class="badge green">
+Healthy
+</span>
+
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     CERTIFICATES
+===================================================== -->
+
+<section
+class="section"
+id="certificates">
+
+
+<div
+class="certificate"
+id="certificateArea">
+
+
+<div class="seal">
+
+🏆
+
+</div>
+
+
+<h2>
+CLOUDCERT PRO
+</h2>
+
+
+<h1>
+CLOUD COMPUTING PROFESSIONAL
+</h1>
+
+
+<p>
+This certificate recognizes the successful
+completion of the Cloud Computing
+Professional learning path.
+</p>
+
+
+<br>
+
+
+<h2 id="certificateStudent">
+
+Administrator
+
+</h2>
+
+
+<p>
+AWS · Azure · Google Cloud
+</p>
+
+
+<br>
+
+
+<p>
+Certificate ID:
+<strong id="certificateID">
+
+CCP-2026-001
+
+</strong>
+
+</p>
+
+
+<p>
+Issue Date:
+<strong id="issueDate">
+
+</strong>
+
+</p>
+
+
+<button
+class="primary"
+onclick="printCertificate()">
+
+Print Certificate
+
+</button>
+
+
+<button
+class="secondary"
+onclick="verifyCertificate()">
+
+Verify QR / Certificate
+
+</button>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     BADGES
+===================================================== -->
+
+<section
+class="section"
+id="badges">
+
+
+<div class="panel">
+
+
+<h2>
+🎖️ Digital Skill Badges
+</h2>
+
+
+<br>
+
+
+<div class="course-grid">
+
+
+<div class="course aws">
+
+<div class="provider-icon">
+🏅
+</div>
+
+<h3>
+AWS Fundamentals
+</h3>
+
+<p>
+Cloud architecture,
+security and AWS services.
+</p>
+
+<span class="badge green">
+EARNED
+</span>
+
+</div>
+
+
+<div class="course azure">
+
+<div class="provider-icon">
+🏅
+</div>
+
+<h3>
+Azure Networking
+</h3>
+
+<p>
+Azure networking and
+virtual network skills.
+</p>
+
+<span class="badge green">
+EARNED
+</span>
+
+</div>
+
+
+<div class="course gcp">
+
+<div class="provider-icon">
+🔒
+</div>
+
+<h3>
+GCP Security
+</h3>
+
+<p>
+Identity and security
+implementation.
+</p>
+
+<span class="badge orange">
+IN PROGRESS
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LEADERBOARD
+===================================================== -->
+
+<section
+class="section"
+id="leaderboard">
+
+
+<div class="panel">
+
+
+<h2>
+🏅 Global Leaderboard
+</h2>
+
+
+<br>
+
+
+<div class="rank">
+
+<div class="rank-user">
+
+<div class="rank-number">
+1
+</div>
+
+<strong>
+Priya
+</strong>
+
+</div>
+
+<strong>
+96%
+</strong>
+
+</div>
+
+
+<div class="rank">
+
+<div class="rank-user">
+
+<div class="rank-number">
+2
+</div>
+
+<strong>
+Arun
+</strong>
+
+</div>
+
+<strong>
+94%
+</strong>
+
+</div>
+
+
+<div class="rank">
+
+<div class="rank-user">
+
+<div class="rank-number">
+3
+</div>
+
+<strong>
+Administrator
+</strong>
+
+</div>
+
+<strong>
+92%
+</strong>
+
+</div>
+
+
+<div class="rank">
+
+<div class="rank-user">
+
+<div class="rank-number">
+4
+</div>
+
+<strong>
+Rahul
+</strong>
+
+</div>
+
+<strong>
+89%
+</strong>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ADMIN DASHBOARD
+===================================================== -->
+
+<section
+class="section"
+id="admin">
+
+
+<div class="section-header">
+
+<h2>
+⚙️ Administrator Dashboard
+</h2>
+
+<span class="badge blue">
+ADMIN ROLE
+</span>
+
+</div>
+
+
+<div class="admin-grid">
+
+
+<div class="admin-card">
+
+<h3>
+👥 Users
+</h3>
+
+<p>
+1,248 registered learners
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="adminAction('users')">
+
+Manage Users
+
+</button>
+
+</div>
+
+
+<div class="admin-card">
+
+<h3>
+📚 Courses
+</h3>
+
+<p>
+12 active courses
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="adminAction('courses')">
+
+Manage Courses
+
+</button>
+
+</div>
+
+
+<div class="admin-card">
+
+<h3>
+📝 Question Bank
+</h3>
+
+<p>
+2,450 questions
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="adminAction('questions')">
+
+Manage Questions
+
+</button>
+
+</div>
+
+
+<div class="admin-card">
+
+<h3>
+🏆 Certificates
+</h3>
+
+<p>
+384 certificates issued
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="adminAction('certificates')">
+
+Manage Certificates
+
+</button>
+
+</div>
+
+
+<div class="admin-card">
+
+<h3>
+🔐 Roles
+</h3>
+
+<p>
+Student · Instructor · Admin
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="adminAction('roles')">
+
+Manage Roles
+
+</button>
+
+</div>
+
+
+<div class="admin-card">
+
+<h3>
+📊 Reports
+</h3>
+
+<p>
+Performance and usage reports
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="adminAction('reports')">
+
+Generate Report
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     REST API
+===================================================== -->
+
+<section
+class="section"
+id="api">
+
+
+<div class="panel">
+
+
+<h2>
+🔌 REST API / Backend Integration
+</h2>
+
+
+<p style="
+margin:10px 0;
+color:#64748b;
+">
+
+Demo API endpoints for connecting
+this frontend to a real backend.
+
+</p>
+
+
+<div class="api-box">
+
+
+<div class="api-line">
+POST /api/auth/login
+</div>
+
+
+<div class="api-line">
+POST /api/auth/register
+</div>
+
+
+<div class="api-line">
+GET /api/courses
+</div>
+
+
+<div class="api-line">
+POST /api/courses
+</div>
+
+
+<div class="api-line">
+GET /api/labs
+</div>
+
+
+<div class="api-line">
+POST /api/exams/start
+</div>
+
+
+<div class="api-line">
+POST /api/exams/submit
+</div>
+
+
+<div class="api-line">
+GET /api/results/:userId
+</div>
+
+
+<div class="api-line">
+GET /api/certificates/:id
+</div>
+
+
+<div class="api-line">
+GET /api/leaderboard
+</div>
+
+
+<div class="api-line">
+GET /api/cloud/resources
+</div>
+
+
+<div class="api-line">
+GET /api/analytics
+</div>
+
+
+</div>
+
+
+<br>
+
+
+<button
+class="primary"
+onclick="testAPI()">
+
+Test API
+
+</button>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     LOGS
+===================================================== -->
+
+<section
+class="section"
+id="logs">
+
+
+<div class="panel">
+
+
+<h2>
+📋 System Logs
+</h2>
+
+
+<br>
+
+
+<div id="systemLogs">
+
+
+<div class="log">
+10:20:01 · User authentication successful
+</div>
+
+
+<div class="log">
+10:22:34 · AWS course progress updated
+</div>
+
+
+<div class="log">
+10:24:51 · Cloud resource monitoring started
+</div>
+
+
+<div class="log">
+10:27:19 · Database synchronization completed
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     DEPLOYMENT
+===================================================== -->
+
+<section
+class="section"
+id="deployment">
+
+
+<div class="panel">
+
+
+<h2>
+🚀 Cloud Deployment Architecture
+</h2>
+
+
+<br>
+
+
+<div class="api-box">
+
+
+Internet
+
+↓
+
+CloudFront / CDN
+
+↓
+
+Load Balancer
+
+↓
+
+Frontend Application
+
+↓
+
+REST API Backend
+
+↓
+
+Authentication Service
+
+↓
+
+PostgreSQL Database
+
+↓
+
+Object Storage
+
+↓
+
+AWS / Azure / GCP
+
+↓
+
+Monitoring + Logging
+
+
+</div>
+
+
+<br>
+
+
+<div class="course-grid">
+
+
+<div class="lab">
+
+<h3>
+🐳 Docker
+</h3>
+
+<p>
+Containerize frontend and backend
+for portable deployment.
+</p>
+
+</div>
+
+
+<div class="lab">
+
+<h3>
+☁️ Kubernetes
+</h3>
+
+<p>
+Orchestrate scalable containers
+across cloud environments.
+</p>
+
+</div>
+
+
+<div class="lab">
+
+<h3>
+📊 Monitoring
+</h3>
+
+<p>
+Monitor CPU, memory, network,
+errors and application health.
+</p>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+CloudCert Pro © 2026 |
+
+Advanced Cloud Certification
+Management System
+
+</footer>
+
+
+</div>
+
+
+<!-- =====================================================
+     COURSE MODAL
+===================================================== -->
+
+<div
+class="modal"
+id="courseModal">
+
+
+<div class="modal-content">
+
+
+<div class="modal-header">
+
+<h2>
+Add Cloud Course
+</h2>
+
+<button
+class="close"
+onclick="closeModal('courseModal')">
+
+✕
+
+</button>
+
+</div>
+
+
+<label>
+Course Name
+</label>
+
+<input
+id="newCourse"
+style="
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #cbd5e1;
+border-radius:8px;
+"
+placeholder="Enter course name">
+
+
+<label>
+Provider
+</label>
+
+<select
+id="newProvider"
+style="
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #cbd5e1;
+border-radius:8px;
+">
+
+<option>
+AWS
+</option>
+
+<option>
+Microsoft Azure
+</option>
+
+<option>
+Google Cloud
+</option>
+
+</select>
+
+
+<button
+class="primary"
+onclick="addCourse()">
+
+Add Course
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function login(){
+
+    const username =
+    document.getElementById(
+        "username"
+    ).value.trim();
+
+    const password =
+    document.getElementById(
+        "password"
+    ).value;
+
+
+    if(
+        username === "admin" &&
+        password === "admin123"
+    ){
+
+        localStorage.setItem(
+            "cloudcertUser",
+            username
+        );
+
+
+        document.getElementById(
+            "loginPage"
+        ).style.display =
+        "none";
+
+
+        document.getElementById(
+            "app"
+        ).style.display =
+        "block";
+
+
+        document.getElementById(
+            "topUser"
+        ).innerText =
+        username;
+
+
+        document.getElementById(
+            "certificateStudent"
+        ).innerText =
+        username;
+
+
+        addLog(
+            "Authentication successful."
+        );
+
+    }
+
+    else{
+
+        alert(
+            "Invalid login.\n\n" +
+            "Demo:\n" +
+            "admin / admin123"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    localStorage.removeItem(
+        "cloudcertUser"
+    );
+
+
+    document.getElementById(
+        "app"
+    ).style.display =
+    "none";
+
+
+    document.getElementById(
+        "loginPage"
+    ).style.display =
+    "flex";
+
+}
+
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+function toggleDarkMode(){
+
+    document.body.classList.toggle(
+        "dark"
+    );
+
+}
+
+
+/* =====================================================
+   COURSE
+===================================================== */
+
+function startCourse(course){
+
+    alert(
+        "Opening course:\n\n"
+        + course
+        + "\n\n"
+        + "Learning module loaded."
+    );
+
+
+    addLog(
+        "Course started: "
+        + course
+    );
+
+}
+
+
+/* =====================================================
+   LAB
+===================================================== */
+
+function startLab(){
+
+    const labs = [
+
+        "AWS EC2 Deployment",
+
+        "Azure Virtual Network",
+
+        "Google Cloud Storage",
+
+        "Docker Container",
+
+        "Kubernetes Deployment",
+
+        "Serverless Function"
+
+    ];
+
+
+    const lab =
+    labs[
+        Math.floor(
+            Math.random()
+            * labs.length
+        )
+    ];
+
+
+    alert(
+        "Lab Started:\n\n"
+        + lab
+        + "\n\n"
+        + "Temporary cloud laboratory environment created."
+    );
+
+
+    let count =
+    Number(
+        document.getElementById(
+            "labCount"
+        ).innerText
+    );
+
+
+    document.getElementById(
+        "labCount"
+    ).innerText =
+    count + 1;
+
+
+    addLog(
+        "Hands-on lab started: "
+        + lab
+    );
+
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+function startQuiz(){
+
+    const questions = [
+
+        [
+            "What does IaaS stand for?",
+            "Infrastructure as a Service"
+        ],
+
+        [
+            "What does SaaS stand for?",
+            "Software as a Service"
+        ],
+
+        [
+            "What is cloud elasticity?",
+            "Ability to scale resources"
+        ],
+
+        [
+            "What is AWS?",
+            "Amazon Web Services"
+        ],
+
+        [
+            "Which model combines public and private cloud?",
+            "Hybrid Cloud"
+        ]
+
+    ];
+
+
+    let score = 0;
+
+
+    questions.forEach(
+        item => {
+
+            const answer =
+            prompt(
+                item[0]
+            );
+
+
+            if(
+                answer &&
+                answer
+                .toLowerCase()
+                .includes(
+                    item[1]
+                    .toLowerCase()
+                )
+            ){
+
+                score++;
+
+            }
+
+        }
+    );
+
+
+    const percentage =
+    Math.round(
+        score /
+        questions.length
+        * 100
+    );
+
+
+    alert(
+        "Quiz completed!\n\n"
+        + "Score: "
+        + percentage
+        + "%"
+    );
+
+
+    addLog(
+        "Quiz completed with "
+        + percentage
+        + "%"
+    );
+
+}
+
+
+/* =====================================================
+   EXAM
+===================================================== */
+
+function startExam(){
+
+    const score =
+    Math.floor(
+        Math.random() * 41
+    ) + 60;
+
+
+    const result =
+    score >= 70
+    ? "PASS"
+    : "FAIL";
+
+
+    alert(
+        "Mock Exam Completed\n\n"
+        + "Score: "
+        + score
+        + "%\n"
+        + "Result: "
+        + result
+    );
+
+
+    document.getElementById(
+        "examCount"
+    ).innerText =
+    Number(
+        document.getElementById(
+            "examCount"
+        ).innerText
+    ) + 1;
+
+
+    document.getElementById(
+        "averageScore"
+    ).innerText =
+    score + "%";
+
+
+    addLog(
+        "Mock exam completed. Score: "
+        + score
+        + "%."
+    );
+
+}
+
+
+/* =====================================================
+   AI ANALYSIS
+===================================================== */
+
+function runAIAnalysis(){
+
+    const topics = [
+
+        "Cloud Networking",
+
+        "IAM Security",
+
+        "Kubernetes",
+
+        "Serverless",
+
+        "Cloud Storage",
+
+        "DevOps"
+
+    ];
+
+
+    const weak =
+    topics[
+        Math.floor(
+            Math.random()
+            * topics.length
+        )
+    ];
+
+
+    alert(
+        "AI Skill Analysis\n\n"
+        + "Weak topic: "
+        + weak
+        + "\n\n"
+        + "Recommendation:\n"
+        + "Complete two hands-on labs "
+        + "and one practice quiz."
+    );
+
+
+    addLog(
+        "AI skill analysis completed."
+    );
+
+}
+
+
+/* =====================================================
+   CERTIFICATE
+===================================================== */
+
+function printCertificate(){
+
+    window.print();
+
+}
+
+
+function verifyCertificate(){
+
+    const id =
+    document.getElementById(
+        "certificateID"
+    ).innerText;
+
+
+    alert(
+        "Certificate Verification\n\n"
+        + "ID: "
+        + id
+        + "\n\n"
+        + "Status: VERIFIED ✓"
+    );
+
+
+    addLog(
+        "Certificate "
+        + id
+        + " verified."
+    );
+
+}
+
+
+/* =====================================================
+   MODALS
+===================================================== */
+
+function openModal(id){
+
+    document.getElementById(
+        id
+    ).style.display =
+    "flex";
+
+}
+
+
+function closeModal(id){
+
+    document.getElementById(
+        id
+    ).style.display =
+    "none";
+
+}
+
+
+/* =====================================================
+   ADD COURSE
+===================================================== */
+
+function addCourse(){
+
+    const name =
+    document.getElementById(
+        "newCourse"
+    ).value;
+
+
+    const provider =
+    document.getElementById(
+        "newProvider"
+    ).value;
+
+
+    if(!name){
+
+        alert(
+            "Enter course name."
+        );
+
+        return;
+
+    }
+
+
+    const list =
+    document.getElementById(
+        "courseList"
+    );
+
+
+    const card =
+    document.createElement(
+        "div"
+    );
+
+
+    card.className =
+    "course searchable";
+
+
+    card.innerHTML = `
+
+        <div class="provider-icon">
+        ☁️
+        </div>
+
+        <h3>
+        ${name}
+        </h3>
+
+        <p>
+        Provider:
+        ${provider}
+        </p>
+
+        <div class="progress">
+
+            <div
+            class="progress-bar"
+            style="width:0%">
+            </div>
+
+        </div>
+
+        <div class="course-meta">
+
+            <span>
+            0% Complete
+            </span>
+
+            <span>
+            New
+            </span>
+
+        </div>
+
+        <br>
+
+        <button
+        class="primary"
+        onclick="startCourse('${name}')">
+
+        Start
+
+        </button>
+
+    `;
+
+
+    list.appendChild(card);
+
+
+    closeModal(
+        "courseModal"
+    );
+
+
+    document.getElementById(
+        "newCourse"
+    ).value =
+    "";
+
+
+    addLog(
+        "New course added: "
+        + name
+    );
+
+
+    alert(
+        "Course added successfully."
+    );
+
+}
+
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+function adminAction(action){
+
+    const messages = {
+
+        users:
+        "User management panel opened.",
+
+        courses:
+        "Course management panel opened.",
+
+        questions:
+        "Question bank opened.",
+
+        certificates:
+        "Certificate management opened.",
+
+        roles:
+        "Role management opened.",
+
+        reports:
+        "Performance report generated."
+
+    };
+
+
+    alert(
+        messages[action]
+    );
+
+
+    addLog(
+        messages[action]
+    );
+
+}
+
+
+/* =====================================================
+   API
+===================================================== */
+
+function testAPI(){
+
+    alert(
+        "REST API Test\n\n"
+        + "GET /api/courses\n\n"
+        + "Status: 200 OK\n\n"
+        + "Response: Courses loaded successfully."
+    );
+
+
+    addLog(
+        "REST API endpoint tested successfully."
+    );
+
+}
+
+
+/* =====================================================
+   CLOUD REFRESH
+===================================================== */
+
+function refreshCloud(){
+
+    alert(
+        "Multi-cloud resources refreshed.\n\n"
+        + "AWS: Healthy\n"
+        + "Azure: Healthy\n"
+        + "GCP: Healthy"
+    );
+
+
+    addLog(
+        "Multi-cloud resource monitoring refreshed."
+    );
+
+}
+
+
+/* =====================================================
+   NOTIFICATIONS
+===================================================== */
+
+function showNotifications(){
+
+    alert(
+        "🔔 Notifications\n\n"
+        + "1. AWS exam reminder\n"
+        + "2. New Kubernetes lab\n"
+        + "3. Certificate ready\n"
+        + "4. Azure module updated"
+    );
+
+}
+
+
+/* =====================================================
+   GLOBAL SEARCH
+===================================================== */
+
+function globalSearch(){
+
+    const value =
+    document.getElementById(
+        "globalSearch"
+    ).value
+    .toLowerCase();
+
+
+    const elements =
+    document.querySelectorAll(
+        ".searchable"
+    );
+
+
+    elements.forEach(
+        element => {
+
+            const text =
+            element.innerText
+            .toLowerCase();
+
+
+            element.style.display =
+            text.includes(value)
+            ? ""
+            : "none";
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOGS
+===================================================== */
+
+function addLog(message){
+
+    const logs =
+    document.getElementById(
+        "systemLogs"
+    );
+
+
+    const div =
+    document.createElement(
+        "div"
+    );
+
+
+    div.className =
+    "log";
+
+
+    div.style.padding =
+    "10px";
+
+
+    div.style.borderBottom =
+    "1px solid #e2e8f0";
+
+
+    div.innerText =
+    new Date()
+    .toLocaleTimeString()
+    + " · "
+    + message;
+
+
+    logs.prepend(
+        div
+    );
+
+}
+
+
+/* =====================================================
+   ANALYTICS CHART
+===================================================== */
+
+function generateChart(){
+
+    const chart =
+    document.getElementById(
+        "chart"
+    );
+
+
+    const values = [
+
+        45,55,62,70,66,
+        74,80,76,84,90,
+        87,93,82,96
+
+    ];
+
+
+    values.forEach(
+        value => {
+
+            const bar =
+            document.createElement(
+                "div"
+            );
+
+
+            bar.className =
+            "bar";
+
+
+            bar.style.height =
+            value * 2.3
+            + "px";
+
+
+            bar.title =
+            value
+            + "%";
+
+
+            chart.appendChild(
+                bar
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
+
+document.getElementById(
+    "issueDate"
+).innerText =
+new Date()
+.toLocaleDateString();
+
+
+/* =====================================================
+   CERTIFICATE ID
+===================================================== */
+
+document.getElementById(
+    "certificateID"
+).innerText =
+"CCP-" +
+new Date()
+.getFullYear()
++
+"-" +
+Math.floor(
+    Math.random()
+    * 900000
+);
+
+
+/* =====================================================
+   AUTO MONITORING
+===================================================== */
+
+setInterval(
+
+    function(){
+
+        const cpu =
+        Math.floor(
+            Math.random()*50
+        ) + 20;
+
+
+        addLog(
+            "Cloud monitoring: CPU "
+            + cpu
+            + "%"
+        );
+
+    },
+
+    20000
+
+);
+
+
+/* =====================================================
+   RESTORE LOGIN
+===================================================== */
+
+window.onload =
+function(){
+
+    generateChart();
+
+
+    const saved =
+    localStorage.getItem(
+        "cloudcertUser"
+    );
+
+
+    if(saved){
+
+        document.getElementById(
+            "loginPage"
+        ).style.display =
+        "none";
+
+
+        document.getElementById(
+            "app"
+        ).style.display =
+        "block";
+
+
+        document.getElementById(
+            "topUser"
+        ).innerText =
+        saved;
+
+
+        document.getElementById(
+            "certificateStudent"
+        ).innerText =
+        saved;
+
+    }
+
+};
+
+</script>
+
+</body>
+
+</html>
+```
